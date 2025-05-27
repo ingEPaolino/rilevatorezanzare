@@ -429,10 +429,18 @@
                     this.updateStatus('🔄 Richiesta accesso alla camera...', 'active');
                     
                     // Prima prova con configurazione semplice
-                    let constraints = {
+                    /*let constraints = {
                         video: true,
                         audio: false
-                    };
+                    };*/
+		    constraints = {
+                            video: { 
+                                facingMode: { ideal: 'environment' },
+                                width: { min: 320, ideal: 640, max: 1280 },
+                                height: { min: 240, ideal: 480, max: 720 }
+                            },
+                            audio: false
+                        };
                     
                     try {
                         this.stream = await navigator.mediaDevices.getUserMedia(constraints);
