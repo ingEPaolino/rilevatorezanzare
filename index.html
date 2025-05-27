@@ -455,6 +455,15 @@
                     this.video.srcObject = this.stream;
                     await this.video.play();
                     
+                    // Assicurati che il canvas abbia le stesse dimensioni del video
+                    this.video.addEventListener('loadedmetadata', () => {
+                        this.canvas.width = this.video.videoWidth;
+                        this.canvas.height = this.video.videoHeight;
+                        // Mantieni le proporzioni sul display
+                        this.canvas.style.width = this.video.offsetWidth + 'px';
+                        this.canvas.style.height = this.video.offsetHeight + 'px';
+                    });
+                    
                     this.startBtn.disabled = true;
                     this.demoBtn.disabled = true;
                     this.detectBtn.disabled = false;
